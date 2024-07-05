@@ -1,22 +1,22 @@
 <?php
 extract($_POST);
 
-  $PA = new personal_administrativo;
-  $ROL = new rol;
-  $SESION = new sesion;
   $consulta = new consultas;
+  $PA = new personal_administrativo($consulta);
+  $ROL = new rol($consulta);
+  $SESION = new sesion($consulta);
 
 if (isset($_POST["formulario"])) {
   
   switch ($_POST["formulario"]) {
     case "crear":
-  $consulta->ejecutar_consulta($PA->registrar_datos($CI, $usu, $ape, $pass, $rol));
+  $PA->registrar_datos($CI, $usu, $ape, $pass, $rol);
       break;
 
     case "cambiar":
       
 
-   $consulta->ejecutar_consulta( $PA->editar_datos($CI2, $usu2, $ape2, $pass2, $id_rol));
+   $PA->editar_datos($CI2, $usu2, $ape2, $pass2, $id_rol);
       break;
   }
 }
@@ -76,7 +76,7 @@ if (isset($_POST["formulario"])) {
        
 
  <?php
- $arreglo = $consulta->consultar_registro($PA->consultar_datos(),4);
+ $arreglo = $PA->consultar_datos();
    ?>
    <table class="table table-bordered"> 
  <tr>
@@ -96,7 +96,7 @@ if (isset($_POST["formulario"])) {
  <?php
  $a = 0;
  $i = 0;
-$nombres = $consulta->consultar_registro($ROL->consultar_rol(),2);
+$nombres = $ROL->consultar_rol();
 
  while ($arreglo[$a][0]) {
 
@@ -158,7 +158,7 @@ $nombres[ $arreglo[$a][4] -1][0]
     <label class="form-label"> 
     rol
       <input type="text" name="rol2" class="form-control w-75" value=' .
-     $consulta->consultar_registro($ROL->consultar_rol($arreglo[$a][4])) .
+     $ROL->consultar_rol($arreglo[$a][4]) .
      '>
     </label>
     <label class="form-label"> 
@@ -206,10 +206,7 @@ $nombres[ $arreglo[$a][4] -1][0]
 <ul>';
    $id = $arreglo[$a][0];
 
-   $lista_secciones =
-   $consulta->consultar_registro(
-   $SESION->consultar_sesion($id)
-  ,4 );
+   $lista_secciones =  $SESION->consultar_sesion($id);
    $c = 0;
    echo "<table class='table table-bordered'>";
    if (!$lista_secciones) {

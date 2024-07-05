@@ -6,15 +6,15 @@ $op = 7;
 include "../Codigo_php/Funciones/Enunciados.php";
 include "../Codigo_php/Clases/Persona.php";
 include "../Partes_html/Head.php";
-$PA = new personal_administrativo;
-$SESION = new sesion;
 $consulta = new consultas;
+$PA = new personal_administrativo($consulta);
+$SESION = new sesion($consulta);
 ?>
 
 <?php
 extract($_POST);
 if (isset($n)) {
-  $arreglo = $consulta->consultar_registro( $PA->consultar_datos($usu),4);
+  $arreglo =$PA->consultar_datos($usu);
 
   if ($contraseña == $arreglo[0][3]) { ?>
   
@@ -28,7 +28,7 @@ if (isset($n)) {
         $_SESSION["ci"] = $arreglo[0][0];
 $hora = date("h:i");
 $fecha = date("Y-m-d");
-     $consulta->ejecutar_consulta($SESION->registrar_sesion($usu,$fecha ,$hora));
+     $SESION->registrar_sesion($usu,$fecha ,$hora);
         ?>
 
 </strong><br>

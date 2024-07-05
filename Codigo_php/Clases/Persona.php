@@ -40,6 +40,9 @@ class docente extends persona
 
 class personal_administrativo extends persona
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   private $contraseña;
   public $id_rol;
 
@@ -50,8 +53,8 @@ class personal_administrativo extends persona
     $contrasena,
     $id_rol
   ) {
- return   $sql = "INSERT INTO `personal_administrativo` (`ci`,`nombre`,`apellido`,`contrasena`,`id_rol`) VALUES ($cedula, '$nombre', '$apellido', '$contrasena',$id_rol)";
-
+   $sql = "INSERT INTO `personal_administrativo` (`ci`,`nombre`,`apellido`,`contrasena`,`id_rol`) VALUES ($cedula, '$nombre', '$apellido', '$contrasena',$id_rol)";
+$this->consulta->ejecutar_consulta($sql);
   }
 
   public function consultar_datos($ci=1)
@@ -64,7 +67,7 @@ class personal_administrativo extends persona
 
     $sql = "SELECT * FROM `personal_administrativo` $weher";
 
-  return $sql;
+  return $this->consulta->consultar_registro($sql,4);
   }
 
   public function editar_datos(
@@ -74,13 +77,13 @@ class personal_administrativo extends persona
     $contrasena,
     $id_rol
   ) {
- return   $sql = "UPDATE `personal_administrativo` SET `nombre`='$nombre',
+    $sql = "UPDATE `personal_administrativo` SET `nombre`='$nombre',
    `apellido` = '$apellido', 
    `contrasena` ='$contrasena',
    `id_rol` =$id_rol
    
    WHERE `ci` = $cedula";
-
+$this->consulta->ejecutar_consulta($sql);
   }
 }
 
@@ -105,6 +108,9 @@ class direccion
 
 class calle
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
   public $id_calle;
   public $nombre_calle;
   public $id_sector;
@@ -116,7 +122,8 @@ class calle
   public function consultar_calle()
   {
      $sql ="SELECT * FROM `calle` ";
-return $sql;
+  return   $this->consulta ->consultar_registro($sql,2);
+
   }
 
   public function editar_calle()
@@ -126,6 +133,10 @@ return $sql;
 
 class sector
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
+  
   public $id_sector;
   public $nombre_sector;
   public $id_municipio;
@@ -133,10 +144,12 @@ class sector
   public function registrar_sector()
   {
   }
+  
 
   public function consultar_sector()
   {
-    return $sql = "SELECT * FROM `sector`";
+     $sql = "SELECT * FROM `sector`";
+return $this->consulta ->consultar_registro($sql,2);
   }
 
   public function editar_sector()
@@ -146,6 +159,9 @@ class sector
 
 class municipio
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
   public $id_municipio;
   public $nombre_municipo;
   public $id_parroquia;
@@ -156,7 +172,9 @@ class municipio
 
   public function consultar_municipio()
   {
-    return $sql = "SELECT * FROM `municipio`";
+     $sql = "SELECT * FROM `municipio`";
+     return $this->consulta ->consultar_registro($sql,2);
+  
   }
 
   public function editar_municipio()
@@ -166,6 +184,9 @@ class municipio
 
 class parroquia
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
   public $id_parroquia;
   public $nombre_parroquia;
   public $id_estado;
@@ -176,7 +197,10 @@ class parroquia
 
   public function consultar_parroquia()
   {
-    return $sql = "SELECT * FROM `parroquia`";
+     $sql = "SELECT * FROM `parroquia`";
+
+return $this->consulta ->consultar_registro($sql,2);
+  
   }
 
   public function editar_parroquia()
@@ -186,6 +210,10 @@ class parroquia
 
 class estado
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
+  
   public $id_estado;
   public $nombre_estado;
   public $id_pais;
@@ -196,7 +224,9 @@ class estado
 
   public function consultar_estado()
   {
-    return $sql = "SELECT * FROM `estado`";
+     $sql = "SELECT * FROM `estado`";
+     return $this->consulta ->consultar_registro($sql,2);
+  
   }
 
   public function editar_estado()
@@ -206,6 +236,9 @@ class estado
 
 class pais
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
   public $id_pais;
   public $nombre_pais;
 
@@ -215,9 +248,12 @@ class pais
 
   public function consultar_pais()
   {
-    return $sql = "
+     $sql = "
     SELECT *  FROM `pais`
     ";
+    
+    return $this->consulta ->consultar_registro($sql,1);
+  
   }
 
   public function editar_pais()
@@ -258,6 +294,9 @@ class telefono
 
 class sexo
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
   public $id_sexo;
   public $nombre_sexo;
 
@@ -268,7 +307,9 @@ class sexo
   public function consultar_sexo()
   {
     
-    return $sql = "SELECT * FROM `sexo`";
+     $sql = "SELECT * FROM `sexo`";
+     return $this->consulta ->consultar_registro($sql,1);
+  
   }
 
   public function editar_sexo()
@@ -425,29 +466,37 @@ class nacionalidad
 
 class rol
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   public $id_rol;
   public $nombre_rol;
 
   public function registrar_rol($nombre_rol)
   {
- return   $sql = "INSERT INTO `roles` (`nombre_rol`) VALUES ($nombre_rol)";
-
+    $sql = "INSERT INTO `roles` (`nombre_rol`) VALUES ($nombre_rol)";
+$this->consulta->ejecutar_consulta($sql);
   }
 
   public function consultar_rol()
   {
    $sql = "SELECT * FROM `roles`";
 
-return $sql;
+return $this->consulta->consultar_registro($sql,2);
     }
 
   public function editar_rol()
   {
+    
+    $this->consulta->ejecutar_consulta($sql);
   }
 }
 
 class sesion
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   public $cedula;
   public $fecha_sesion;
   public $hora_inicio;
@@ -459,23 +508,26 @@ class sesion
   {
    
 
-   return $sql = "INSERT INTO `sesiones`(`ci`, `fecha`,`hora_inicio`,`hora_cierre`) VALUES ($cedula,'$fecha_sesion','$hora_inicio','$hora_inicio')";
+    $sql = "INSERT INTO `sesiones`(`ci`, `fecha`,`hora_inicio`,`hora_cierre`) VALUES ($cedula,'$fecha_sesion','$hora_inicio','$hora_inicio')";
 
+$this->consulta->ejecutar_consulta($sql);
   }
 
   public function consultar_sesion($cedula)
   {
-  return  $sql = "SELECT * FROM `sesiones` WHERE `ci` = $cedula";
+   $sql = "SELECT * FROM `sesiones` WHERE `ci` = $cedula";
 
+return $this->consulta->consultar_registro($sql);
   }
 
   public function editar_sesion($cedula,$hora_cierre)
   {
     
- return   $sql = "UPDATE `sesiones` SET `hora_cierre`='$hora_cierre'
+    $sql = "UPDATE `sesiones` SET `hora_cierre`='$hora_cierre'
 
 WHERE `ci` = $cedula ORDER BY `id_sesion` DESC LIMIT 1";
 
+$this->consulta->ejecutar_consulta($sql);
   }
 }
 
@@ -546,6 +598,9 @@ class tipo_parentesco
 
 class procedencia
 {
+  public function __construct($consulta){
+    $this->consulta  = $consulta;
+  }
   public $id_procedencia;
   public $nombre_procedencia;
 
@@ -558,7 +613,8 @@ class procedencia
 
   public function consultar_procedencia()
   {
-    return $sql = "SELECT * FROM `procedencia`";
+     $sql = "SELECT * FROM `procedencia`";
+    $this->consulta ->consultar_registro($sql,1);
   }
 
   public function editar_procedencia()

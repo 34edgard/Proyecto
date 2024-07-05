@@ -1,16 +1,27 @@
 
 <?php
 $CONEXION = new consultas;
-$CALLE = new calle;
-$SECTOR = new sector;
-$PARROQUIA = new parroquia;
-$SEXO = new sexo;
-$PROCEDENCIA = new procedencia;
-$calles = $CONEXION->consultar_registro($CALLE->consultar_calle(),2);
-$sectores = $CONEXION->consultar_registro($SECTOR->consultar_sector(),2);
-$parroquias = $CONEXION->consultar_registro($PARROQUIA->consultar_parroquia(),2);
-$sexos = $CONEXION->consultar_registro($SEXO->consultar_sexo(),2);
-$procedencias = $CONEXION->consultar_registro($PROCEDENCIA->consultar_procedencia(),2);
+$CALLE = new calle($CONEXION);
+$SECTOR = new sector($CONEXION);
+$PARROQUIA = new parroquia($CONEXION);
+$MUNICIPIO = new municipio($CONEXION);
+$ESTADO = new estado($CONEXION);
+$SEXO = new sexo($CONEXION);
+$PROCEDENCIA = new procedencia($CONEXION);
+
+$calles = $CALLE->consultar_calle();
+
+$sectores = $SECTOR->consultar_sector();
+
+$parroquias = $PARROQUIA->consultar_parroquia();
+
+$municipios = $MUNICIPIO->consultar_municipio();
+
+$estados = $ESTADO->consultar_estado();
+
+$sexos = $SEXO->consultar_sexo();
+
+$procedencias = $PROCEDENCIA->consultar_procedencia();
 ?>
 
   <form action="Pag_3.1.php" method="post">
@@ -47,8 +58,27 @@ $procedencias = $CONEXION->consultar_registro($PROCEDENCIA->consultar_procedenci
     </div>
     
     <div class="d-flex my-2">
-      <label class="control-label mx-2" for="municipio">municipio:</label><input type="text" name="DN_Mu" placeholder="municipio" class="form-control w-25" id="municipio">
-<label class="control-label mx-2" for="estado">estado:</label><input type="text" name="DN_Ed" placeholder="estado" id="estado" class="form-control w-25">
+      <label class="control-label mx-2" for="municipio">municipio:</label>
+       <select name="procedencia" class="form-control w-25" id="procedencia">
+
+  <?php
+   selector($municipios);
+  
+  ?>
+
+</select>
+  
+      
+<label class="control-label mx-2" for="estado">estado:</label>
+ <select name="procedencia" class="form-control w-25" id="procedencia">
+
+  <?php
+   selector($estados);
+  
+  ?>
+
+</select>
+
 <label class="control-label mx-2" for="nacionalidad">nacionalidad:</label><input type="text" name="DN_Na" placeholder="nacionalidad" class="form-control w-25" id="nacionalidad">
 
 
