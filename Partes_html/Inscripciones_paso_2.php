@@ -1,3 +1,8 @@
+<?php 
+print_r($_POST);
+
+
+?>
 <form action="Pag_3.3.php" >
 <fieldset class="container thumbnail">
 <legend ><u>2-Datos familiares:</u></legend><br>
