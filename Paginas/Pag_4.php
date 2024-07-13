@@ -28,6 +28,9 @@ exit;
 $op = 4;
 include('../Codigo_php/Funciones/Enunciados.php');
 include('../Codigo_php/Funciones/Matricula.php');
+include('../Codigo_php/Funciones/Edad.php');
+include('../Codigo_php/Clases/Conexion.php');
+include('../Codigo_php/Clases/Persona.php');
 
 include('../Partes_html/Head.php');
 include('../Partes_html/Header.php');

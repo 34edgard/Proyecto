@@ -1,7 +1,8 @@
 <?php 
-print_r($_POST);
+$CONSULTA = new consultas;
+$ESTUDIANTE = new estudiante($CONSULTA);
 
-
+$ESTUDIANTE->registrar_datos();
 ?>
 <form action="Pag_3.3.php" >
 <fieldset class="container thumbnail">

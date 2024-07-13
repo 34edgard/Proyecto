@@ -16,4 +16,3 @@ include('./Partes_html/Titulo_del_proyecto.php');
 
 include('./Partes_html/Footer.php');
 ?>
-

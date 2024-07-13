@@ -2,6 +2,9 @@
 
 class persona
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   public $cedula;
   public $nombre;
   public $apellido;
@@ -17,10 +20,29 @@ class estudiante extends persona
   public $id_sexo;
   public $id_estado_nutricional;
   public $id_procedencia;
-  public $direccion;
-  public $lugar_nacimiento;
+  public $id_direccion;
+  public $id_lugar_de_nacimiento;
   public $id_codicion;
   public $id_discapacidad;
+  
+  public function generar_cedula_escolar($ci){
+    $sql = "SELECT `ci_escolar` FROM `estudiante` WHERE `ci_escolar` like '___$ci%' ";
+  }
+  
+  public function registrar_datos(){
+    $sql = "INSERT INTO `estudiante`(`id_direccion`, `id_lugar_de_nacimiento`, `nombres`, `apellidos`, `id_procedencia`, `f_nacimiento`, `ci_escolar`, `id_nacionalidad`, `id_sexo`, `id_condicion`, `id_discapacidad`, `id_estado_nutricional`) VALUES (1,1,'culo','nepe',1,'2003-2-4',355666,1,1,1,1,1)";
+  
+    echo $sql;
+  }
+  
+  public function consultar_datos(){
+    
+    $sql = "SELECT * FROM `estudiante`";
+  
+   $g = $this->consulta->consultar_registro($sql,11);
+    
+    return $g;
+  }
 }
 
 class reprecentante extends persona
@@ -266,7 +288,7 @@ class telefono
   public $id_telefono;
   public $numero;
 
-  public function reguistrar_telefono($numero_telefono)
+  public function registrar_telefono($numero_telefono)
   {
     $sql = "INSERT INTO `telefono` (`numero`) VALUES ($numero_telefono)";
 
@@ -307,7 +329,7 @@ class sexo
   public function consultar_sexo()
   {
     
-     $sql = "SELECT * FROM `sexo`";
+     $sql = "SELECT `nombre_sexo` FROM `sexo`";
      return $this->consulta ->consultar_registro($sql,1);
   
   }
@@ -613,7 +635,7 @@ class procedencia
 
   public function consultar_procedencia()
   {
-     $sql = "SELECT * FROM `procedencia`";
+     $sql = "SELECT `nombre_procedencia` FROM `procedencia`";
     $this->consulta ->consultar_registro($sql,1);
   }
 

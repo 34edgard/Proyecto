@@ -3,11 +3,11 @@ session_start();
 
 include "../Codigo_php/Clases/Conexion.php";
 include "../Codigo_php/Clases/Persona.php";
-$SESION = new sesion;
 $consulta = new consultas;
+$SESION = new sesion($consulta);
 $ci = $_SESSION["ci"];
 $hora_cierre = date("h:i");
-$consulta->ejecutar_consulta($SESION->editar_sesion($ci,$hora_cierre));
+$SESION->editar_sesion($ci,$hora_cierre);
 
 // Redirigir al usuario a otra página
 // Eliminar todos los datos de la sesión

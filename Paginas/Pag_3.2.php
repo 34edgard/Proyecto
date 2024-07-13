@@ -26,6 +26,8 @@ exit;
 
 $op = 3;
 include('../Codigo_php/Funciones/Enunciados.php');
+include('../Codigo_php/Clases/Conexion.php');
+include('../Codigo_php/Clases/Persona.php');
 include('../Partes_html/Head.php');
 include('../Partes_html/Header.php');
 include('../Partes_html/Nav.php');

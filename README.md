@@ -1,5 +1,6 @@
 # Desarrollo de un sistema informático para la gestión escolar del jardín de infancia República del Uruguay Maturin-Edo-Monagas
 ## integrantes:   
+
 - Edgard Patete.   
 - Diego Dias.
 - Ashley Rivaz.

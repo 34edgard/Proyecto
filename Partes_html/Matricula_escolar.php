@@ -1,4 +1,13 @@
+<?php
+$consulta = new consultas;
+$ESTUDIANTES = new estudiante($consulta);
+$SEXO = new sexo($consulta);
+$PROCEDENCIA = new procedencia($consulta);
+$sexos = $SEXO->consultar_sexo();
+$estudiantes = $ESTUDIANTES->consultar_datos();
+$procedencias = $PROCEDENCIA->consultar_procedencia();
 
+?>
   <div class="container mt-5">
       <h1><small>matricula general</small></h1>
 
@@ -21,7 +30,9 @@
           <button class="btn btn-success" type="submit">buscar</button>
         </form>
          <?php
-      matricula($Nivel ="general");
+         
+      matricula_general($estudiantes,$sexos,$procedencias);
+
       ?>
         </div>
         <div class="tab-pane" id="activos" role="tabpanel">
