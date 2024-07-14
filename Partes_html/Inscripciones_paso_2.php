@@ -1,8 +1,9 @@
 <?php 
+extract($_POST);
 $CONSULTA = new consultas;
 $ESTUDIANTE = new estudiante($CONSULTA);
 
-$ESTUDIANTE->registrar_datos();
+$ESTUDIANTE->registrar_datos($Datos_Niño_Calle,$Datos_Niño_Lugar_Nacimiento,$Datos_Niño_Nombre , $Datos_Niño_Apellido, $Datos_Niño_Procedencia, $Datos_Niño_Fecha,$Datos_familiares_Madredre_Cedula, $Datos_Niño_Nacionalidad, $Datos_Niño_Sexo, $Datos_Niño_Condicion_medica, $Datos_Niño_Discapacidad, $Datos_Niño_Estado_Nutricional);
 ?>
 <form action="Pag_3.3.php" >
 <fieldset class="container thumbnail">

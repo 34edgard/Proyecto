@@ -6,6 +6,15 @@ $PARROQUIA = new parroquia($CONEXION);
 $MUNICIPIO = new municipio($CONEXION);
 $ESTADO = new estado($CONEXION);
 $SEXO = new sexo($CONEXION);
+$CONDICION_MEDICA = new condicion_medica($CONEXION);
+$DISCAPACIDAD = new discapacidad($CONEXION);
+$ESTADO_NUTRICIONAL = new estado_nutricional($CONEXION);
+$codiciones_medicas = $CONDICION_MEDICA->consultar_condicion_medica();
+
+$estados_nutricionales = $ESTADO_NUTRICIONAL->consultar_estado_nutricional();
+
+$discapacidades = $DISCAPACIDAD->consultar_discapacidad();
+
 $PROCEDENCIA = new procedencia($CONEXION);
 
 $calles = $CALLE->consultar_calle();
@@ -145,6 +154,36 @@ $procedencias = $PROCEDENCIA->consultar_procedencia();
       <select name="Datos_Niño_Padrerroquia" class="form-control w-75">
         <?php
         selector($parroquias);
+
+        ?>
+      </select>
+
+
+    </div>
+     <h4 class="text-primary">datos medicos</h4>
+    <div class="d-flex my-2">
+      <label>estado nutricional</label>
+      <select name="Datos_Niño_Estado_Nutricional" class="form-control w-75">
+        <?php
+        selector($estados_nutricionales);
+
+        ?>
+      </select>
+
+
+      <label>condicion medica</label>
+      <select name="Datos_Niño_Condicion_medica" class="form-control w-75">
+        <?php
+        selector($codiciones_medicas);
+
+        ?>
+      </select>
+
+
+      <label>discapacidad</label>
+      <select name="Datos_Niño_Discapacidad" class="form-control w-75">
+        <?php
+        selector($discapacidades);
 
         ?>
       </select>

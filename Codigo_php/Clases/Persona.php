@@ -22,15 +22,15 @@ class estudiante extends persona
   public $id_procedencia;
   public $id_direccion;
   public $id_lugar_de_nacimiento;
-  public $id_codicion;
+  public $id_condicion;
   public $id_discapacidad;
   
   public function generar_cedula_escolar($ci){
     $sql = "SELECT `ci_escolar` FROM `estudiante` WHERE `ci_escolar` like '___$ci%' ";
   }
   
-  public function registrar_datos(){
-    $sql = "INSERT INTO `estudiante`(`id_direccion`, `id_lugar_de_nacimiento`, `nombres`, `apellidos`, `id_procedencia`, `f_nacimiento`, `ci_escolar`, `id_nacionalidad`, `id_sexo`, `id_condicion`, `id_discapacidad`, `id_estado_nutricional`) VALUES (1,1,'culo','nepe',1,'2003-2-4',355666,1,1,1,1,1)";
+  public function registrar_datos($id_direccion,$id_lugar_de_nacimiento,$nombre , $apellido, $id_procedencia, $fecha_nacimiento,$cedula_escolar, $id_nacionalidad, $id_sexo, $id_condicion, $id_discapacidad, $id_estado_nutricional){
+    $sql = "INSERT INTO `estudiante`(`id_direccion`, `id_lugar_de_nacimiento`, `nombres`, `apellidos`, `id_procedencia`, `f_nacimiento`, `ci_escolar`, `id_nacionalidad`, `id_sexo`, `id_condicion`, `id_discapacidad`, `id_estado_nutricional`) VALUES ($id_direccion,$id_lugar_de_nacimiento,'$nombre', '$apellido', $id_procedencia,'$fecha_nacimiento',$cedula_escolar, $id_nacionalidad, $id_sexo, $id_condicion, $id_discapacidad, $id_estado_nutricional )";
   
     echo $sql;
   }
@@ -51,7 +51,7 @@ class reprecentante extends persona
   public $direccion_habitacion;
   public $ocupacion;
   public $nivel_instruccion;
-  public $id_codicion;
+  public $id_condicion;
   public $id_discapacidad;
 }
 
@@ -341,6 +341,9 @@ class sexo
 
 class estado_nutricional
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   public $id_estado_nutricional;
   public $descripcion;
 
@@ -350,6 +353,8 @@ class estado_nutricional
 
   public function consultar_estado_nutricional()
   {
+    $sql = "SELECT * FROM `estado_nutricional`";
+return    $this->consulta->consultar_registro($sql,1);
   }
 
   public function editar_estado_nutricional()
@@ -646,6 +651,9 @@ class procedencia
 
 class condicion_medica
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   public $id_condicion;
   public $nombre_condicion;
 
@@ -657,6 +665,8 @@ class condicion_medica
 
   public function consultar_condicion_medica()
   {
+    $sql = "SELECT * FROM `condicion_medica`";
+return    $this->consulta->consultar_registro($sql,1);
   }
 
   public function editar_condicion_medica()
@@ -666,6 +676,9 @@ class condicion_medica
 
 class tratamiento
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   public $id_condicion;
   public $id_tratamiento;
   public $nombre_tratamiento;
@@ -687,6 +700,9 @@ class tratamiento
 
 class discapacidad
 {
+  public function __construct($consulta){
+    $this->consulta = $consulta;
+  }
   public $id_discapacidad;
   public $nombre_discapacidad;
 
@@ -698,6 +714,8 @@ class discapacidad
 
   public function consultar_discapacidad()
   {
+    $sql = "SELECT * FROM `discapacidad`";
+return    $this->consulta->consultar_registro($sql,1);
   }
 
   public function editar_discapacidad()

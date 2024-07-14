@@ -59,7 +59,7 @@ while($Estudiante[$i][0]){
      echo "<td>".$Estudiante[$i][5]."</td>";
 echo "<td>".edad($Estudiante[$i][5])."</td>";
      echo "<td>".$Estudiante[$i][0]."</td>";
-     echo "<td>".$Procedencia[$Estudiante[$i][4]][0]."</td>";
+     echo "<td>".$Procedencia[$Estudiante[$i][4]-1]."</td>";
      echo  "<td>vhh</td>";
      echo  "<td>vhh</td>";
      echo  "<td>vhh</td>";
